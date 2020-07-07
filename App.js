@@ -1,21 +1,25 @@
 import * as React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
+import { NativeRouter, Route, Link } from "react-router-native";
+
 import Constants from 'expo-constants';
 
-// You can import from local files
-import AssetExample from './components/AssetExample';
-import Header from './components/Header';
 import Dashboard from './components/Dashboard';
+import ComicView from './components/ComicView';
+
 
 // or any pure javascript modules available in npm
 import { Card } from 'react-native-paper';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Header />
-      <Dashboard />
-    </View>
+    <NativeRouter>
+      <View style={styles.container}>
+        <Route exact path="/" component={Dashboard} />
+        <Route path="/:id" render={props => <ComicView {...props} isAuthed={true} />}/>
+        
+      </View>
+    </NativeRouter>
   );
 }
 
