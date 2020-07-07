@@ -27,6 +27,5 @@ const styles = StyleSheet.create({
   container: {
     height: '100%',
     paddingTop: Constants.statusBarHeight+4,
-    backgroundColor: '#ecf0f1',
   },
 });

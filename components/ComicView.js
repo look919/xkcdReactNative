@@ -1,7 +1,8 @@
 import  React, {useEffect, useState} from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
 import { Link } from "react-router-native";
-import Header from './Header';
+
+import Header from './HeaderComicView';
 
 const ComicView = (...props) => {
   const [json, setJson] = useState({title: '', img: ''});
@@ -9,7 +10,6 @@ const ComicView = (...props) => {
 
   let id=props[0].location.pathname.replace(/\D/g,'');  //regex deleting non-numeric values such as /{/ that 
                                                           //I couldn't get rid of with slice method
-  
   useEffect(() => {
      fetchData();
    }, [])
@@ -22,7 +22,7 @@ const ComicView = (...props) => {
 
       setLoading(false)
     } else {
-      console.log('Cannot fetch data', res.status);
+      alert(`Cannot fetch data. Status: ${res.status}`);
     } 
   }
 
@@ -31,8 +31,9 @@ const ComicView = (...props) => {
       <Header title={json.title} />
       <View style={styles.comic}>
       { isLoading  
-      ? <Image style={{width: '100%', height: '100%'}}  source={require('../assets/loading.gif')} />
-      : <Image style={{width: '100%', height: '100%'}}  source={{uri: `${json.img}`}}
+      ? <Image style={{width: 250, height: 250}} source={require('../assets/loading.gif')} />
+      : <Image style={{flex: 1, width: 320, height: 320, resizeMode: 'contain'}}  
+               source={{uri: `${json.img}`}}
          />} 
       </View>
     </View>
@@ -41,11 +42,12 @@ const ComicView = (...props) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#ecf0f1',
     flexGrow: 1,
   },
   comic: {
     flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
     padding: 10,
     paddingTop: 30,
   }

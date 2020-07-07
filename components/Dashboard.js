@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, FlatList } from 'react-native';
 import Constants from 'expo-constants';
 
 import Comic from './ComicItem';
-import Header from './Header'
+import Header from './HeaderDashboard'
 
 // or any pure javascript modules available in npm
 import { Card } from 'react-native-paper';
