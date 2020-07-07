@@ -6,6 +6,7 @@ import Constants from 'expo-constants';
 
 import Dashboard from './components/Dashboard';
 import ComicView from './components/ComicView';
+import AboutUs from './components/AboutUs'
 
 
 // or any pure javascript modules available in npm
@@ -16,7 +17,9 @@ export default function App() {
     <NativeRouter>
       <View style={styles.container}>
         <Route exact path="/" component={Dashboard} />
-        <Route path="/:id" render={props => <ComicView {...props} isAuthed={true} />}/>
+        <Route path="/info" component={AboutUs} />
+        <Route path="/comic/:id" render={props => <ComicView {...props} isAuthed={true} />}/>
+
         
       </View>
     </NativeRouter>

@@ -5,23 +5,21 @@ import { Link } from "react-router-native";
 export default function Header() {
 
   const randomId = Math.floor(Math.random() * 2330);     
-console.log(randomId); 
+
   return (
     <View style={styles.container}>
-      <Link to={`/:${randomId}`}>
+      <Link to={`/comic/:${randomId}`}>
         <View style={styles.icon}>
           <Image style={{height:20, width: 20 }}source={require('../assets/dice.png')} />     
           <Text style={styles.iconText}>Random</Text>
         </View>
       </Link> 
-
-      
-      
+   
       <Text style={styles.header}>
-        XKCD
+        xkcd
       </Text>
 
-      <Link to={`/:${randomId}`}>
+      <Link to={'/info'}>
         <View style={styles.icon}>
           <Image style={{height:20, width: 20 }}source={require('../assets/info.png')} />  
           <Text style={styles.iconText}>About us</Text>    

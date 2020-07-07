@@ -25,12 +25,12 @@ const Comic = ({id}) => {
   return (
     <View style={styles.container}>
       <View style={styles.text}>
-        <Link to={`{/${id}`}>
+        <Link to={`{/comic/${id}`}>
           <Text style={styles.name}>
             {json.title}
           </Text>
         </Link>
-        <Link to={`{/${id}`}>
+        <Link to={`{/comic/${id}`}>
           <Text style={styles.date}>
             {json.day && `${json.day}/${json.month}/${json.year}`}
           </Text>

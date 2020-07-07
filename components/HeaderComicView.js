@@ -5,7 +5,7 @@ import { Link, Redirect } from "react-router-native";
 export default function Header({title}) {
 
   const randomId = Math.floor(Math.random() * 2330);  
-  console.log(randomId);   
+
 
   return (
     <View style={styles.container}>
@@ -23,7 +23,7 @@ export default function Header({title}) {
       <Link to={`/info`}>
         <View style={styles.icon}>
           <Image style={{height:20, width: 20 }}source={require('../assets/info.png')} />  
-          <Text style={styles.iconText}>Go Back</Text>    
+          <Text style={styles.iconText}>About us</Text>    
         </View>
       </Link>
     </View>
