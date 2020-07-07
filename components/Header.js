@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
 
-export default function AssetExample() {
+export default function Header() {
   return (
     <View>
       <Text style={styles.header}>

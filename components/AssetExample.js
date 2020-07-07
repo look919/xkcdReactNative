@@ -1,13 +1,29 @@
-import * as React from 'react';
+import  React, {useEffect, useState} from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
 
+const AssetExample = () => {
+  const [json, setJson] = useState({img: ''});
+  const [isLoading, setLoading] = useState(true);
 
-export default function AssetExample() {
+   useEffect(() => {
+     fetchData();
+   }, [])
+    
+  const fetchData = async () => {
+    const res = await fetch('http://xkcd.com/614/info.0.json');
+    if(res.ok){
+      const data = await res.json();     
+      //data.img = `require(${data.img})`
+      console.log(data.img);
+      await setJson(data)
+     
+      setLoading(false)
+    } else {
+      console.log('Cannot fetch data', res.status);
+    } 
+  
+  }
 
-console.log('test');
-  let isLoading = true;
-  const data = fetch('http://xkcd.com/614/info.0.json').then(response => response.json())
-  .then(isLoading = false);
 
   return (
     <View style={styles.container}>
@@ -16,7 +32,9 @@ console.log('test');
       </Text>
       {
       isLoading ? <Image style={styles.logo} source={require('../assets/loading.gif')} />
-      : <Image style={styles.logo} source={require(data.img)} />
+      : <Image source={{uri: `${json.img}`}}
+       style={{width: 80, height: 80}} 
+         />
       }
       
     </View>
@@ -40,4 +58,5 @@ const styles = StyleSheet.create({
     height: 128,
     width: 128,
   }
-});
+})
+export default AssetExample;
