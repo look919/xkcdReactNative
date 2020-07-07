@@ -17,10 +17,8 @@ export default function App() {
     <NativeRouter>
       <View style={styles.container}>
         <Route exact path="/" component={Dashboard} />
-        <Route path="/info" component={AboutUs} />
         <Route path="/comic/:id" render={props => <ComicView {...props} isAuthed={true} />}/>
-
-        
+        <Route path="/info" component={AboutUs} />     
       </View>
     </NativeRouter>
   );

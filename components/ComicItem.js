@@ -18,19 +18,19 @@ const Comic = ({id}) => {
      
       setLoading(false)
     } else {
-      console.log('Cannot fetch data', res.status);
+      alert(`Cannot fetch data. Status: ${res.status}`);
     } 
   }
-
+ 
   return (
     <View style={styles.container}>
       <View style={styles.text}>
-        <Link to={`{/comic/${id}`}>
+        <Link to={`/comic/${id}`}>
           <Text style={styles.name}>
             {json.title}
           </Text>
         </Link>
-        <Link to={`{/comic/${id}`}>
+        <Link to={`/comic/${id}`}>
           <Text style={styles.date}>
             {json.day && `${json.day}/${json.month}/${json.year}`}
           </Text>
@@ -55,7 +55,6 @@ const styles = StyleSheet.create({
     paddingTop: 8,
     paddingBottom: 8,
     marginBottom: 4,
-
   },
   text: {
     flex: 1,

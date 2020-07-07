@@ -5,10 +5,6 @@ import Constants from 'expo-constants';
 import Comic from './ComicItem';
 import Header from './HeaderComicView'
 
-// or any pure javascript modules available in npm
-import { Card } from 'react-native-paper';
-
-
 export default function AboutUs() {
   return (
     <View style={styles.container}>   
