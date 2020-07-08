@@ -8,9 +8,11 @@ const Comic = ({id}) => {
 
    useEffect(() => {
      fetchData();
+
+     
    }, [])
 
-  const fetchData = async (fetchLink) => {
+  const fetchData = async () => {
     const res = await fetch(`http://xkcd.com/${id}/info.0.json`);
     if(res.ok){
       const data = await res.json();     

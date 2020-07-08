@@ -1,35 +1,60 @@
-import React, {useState, useCallback} from 'react';
-import { Text, View, StyleSheet, SafeAreaView,TouchableOpacity,FlatList, ScrollView} from 'react-native';
+import React, {useState, useCallback, useEffect} from 'react';
+import { Text, View, Image, StyleSheet, SafeAreaView,TouchableOpacity,FlatList, ScrollView} from 'react-native';
 import Constants from 'expo-constants';
 
 import Comic from './ComicItem';
 import Header from './HeaderDashboard'
 
 export default function Dashboard() {
-  let DATA = [2329,2328,2327,2326,2325,2324,2323,2322];   //ids of latest comics
+  const [isLoading, setLoading] = useState(true);
+  const [data, setData] = useState([])
 
-  const [selected, setSelected] = React.useState(new Map());
-  const onSelect = React.useCallback(
+  useEffect(() => {     
+    fetchData();
+  }, [])
+
+  const fetchData = async () => {
+    const res = await fetch(`http://xkcd.com/info.0.json`);
+    if(res.ok){
+      let json = await res.json();     
+      for(let i=0; i<8; i++){
+        data.push(json.num)
+        json.num-=1;
+      }
+      await setLoading(false);
+    } else {      
+      for(let i=0; i<8; i++){
+        const randomId = Math.floor(Math.random() * 2330);  //if there was a problem with fetching put some random ids instead
+        data.push(randomId)
+      }
+      await setLoading(false);
+    } 
+  }
+
+  const [selected, setSelected] = useState(new Map());
+  const onSelect = useCallback(
     id => {
       const newSelected = new Map(selected);
       newSelected.set(id, !selected.get(id));
-
       setSelected(newSelected);
     },
     [selected],
   );
+
+  
   const handleScrolling = (w) => {
-    const newItem = DATA[0] - DATA.length;  //bascially id lower by one than previous
-    DATA.push(newItem)
+    const newItem = data[0] - data.length;  //bascially id lower by one than previous
+    setData([...data, newItem])
   }
 
   return (
     <View style={styles.container}>   
       <Header />
       <View style={styles.comics}>
-      
-     <FlatList
-        data={DATA}
+      {isLoading 
+      ? <Image style={{width: 320, height: 320, alignSelf: 'center'}}  source={require('../assets/loading.gif')} />
+      : <FlatList
+        data={data}
         renderItem={({ item }) => (
           <Comic
             id={item}
@@ -42,6 +67,7 @@ export default function Dashboard() {
         onScrollBeginDrag={e => handleScrolling(e)}
         onScrollEndDrag={e => handleScrolling(e)}
       />
+      }
       </View>
     </View>
   );
@@ -49,11 +75,11 @@ export default function Dashboard() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#ecf0f1',
     flexGrow: 1,
   },
   comics: {
     flex: 1,
+    justifyContent: 'center',
     padding: 10,
     paddingTop: 30,
   },
