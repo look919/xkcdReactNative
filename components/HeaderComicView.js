@@ -9,7 +9,7 @@ export default function Header({title}) {
 
   return (
     <View style={styles.container}>
-      <Link to={`/`}>
+      <Link to={`/`} underlayColor="transparent">
         <View style={styles.icon}>
           <Image style={{height:20, width: 20 }}source={require('../assets/back.png')} />  
           <Text style={styles.iconText}>Go Back</Text>    
@@ -20,7 +20,7 @@ export default function Header({title}) {
         {title}
       </Text>
 
-      <Link to={`/info`}>
+      <Link to={`/info`} underlayColor="transparent">
         <View style={styles.icon}>
           <Image style={{height:20, width: 20 }}source={require('../assets/info.png')} />  
           <Text style={styles.iconText}>About us</Text>    

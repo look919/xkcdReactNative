@@ -8,8 +8,6 @@ const Comic = ({id}) => {
 
    useEffect(() => {
      fetchData();
-
-     
    }, [])
 
   const fetchData = async () => {
@@ -27,12 +25,12 @@ const Comic = ({id}) => {
   return (
     <View style={styles.container}>
       <View style={styles.text}>
-        <Link to={`/comic/${id}`}>
+        <Link to={`/comic/${id}`} underlayColor="transparent">
           <Text style={styles.name}>
             {json.title}
           </Text>
         </Link>
-        <Link to={`/comic/${id}`}>
+        <Link to={`/comic/${id}`} underlayColor="transparent">
           <Text style={styles.date}>
             {json.day && `${json.day}/${json.month}/${json.year}`}
           </Text>
@@ -53,18 +51,19 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 14,
-    paddingTop: 8,
-    paddingBottom: 8,
+    paddingLeft: 8,
+    paddingRight: 12,
+    paddingTop: 2,
+    paddingBottom: 2,
     marginBottom: 4,
   },
   text: {
     flex: 1,
-    margin: 14,
+    margin: 8,
     marginTop: 4,
   },
   name: {
-    fontSize: 14,
+    fontSize: 12,
     fontWeight: 'bold',
     marginBottom: 5,
     marginTop: 8

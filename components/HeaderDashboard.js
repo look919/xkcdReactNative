@@ -8,7 +8,7 @@ export default function Header() {
 
   return (
     <View style={styles.container}>
-      <Link to={`/comic/:${randomId}`}>
+      <Link to={`/comic/:${randomId}`} underlayColor="transparent">
         <View style={styles.icon}>
           <Image style={{height:20, width: 20 }}source={require('../assets/dice.png')} />     
           <Text style={styles.iconText}>Random</Text>
@@ -19,7 +19,7 @@ export default function Header() {
         xkcd
       </Text>
 
-      <Link to={'/info'}>
+      <Link to={'/info'} underlayColor="transparent">
         <View style={styles.icon}>
           <Image style={{height:20, width: 20 }}source={require('../assets/info.png')} />  
           <Text style={styles.iconText}>About us</Text>    

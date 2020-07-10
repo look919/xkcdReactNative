@@ -55,6 +55,7 @@ export default function Dashboard() {
       ? <Image style={{width: 320, height: 320, alignSelf: 'center'}}  source={require('../assets/loading.gif')} />
       : <FlatList
         data={data}
+        style={styles.list}
         renderItem={({ item }) => (
           <Comic
             id={item}
@@ -81,6 +82,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     padding: 10,
-    paddingTop: 30,
+  },
+  list: {
+    flex: 1,
+    height: '100%',
   },
 });
